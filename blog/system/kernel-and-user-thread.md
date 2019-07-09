@@ -1,0 +1,5 @@
+1.kernel thread 的权限始终是最高级，且永远不低于user thread，用户可以调整user thread级别而不能动kernel thread
+
+2.每个user thread都有一个叫TCB(thread control block 线程控制单元)存放在kernel里面，用于存储当前线程运行状态（指令指针、线程运行状态等），kernel有权访问TCB而用户线程无权限。
+
+3.kernel 线程的作用是用来监视用户线程的状态已维护系统稳定和安全，同时也管理线程的运行和内存。当线程因为出现错误或者运行权限到期要进行context switch时，会主动向kernel发送中断信号并停止执行，将运行权限交给kernel，kernel的interrupt handler会对信号进行识别并进行相应处理。如果是错误信号，kernel会关闭该线程并且执行相应的错误处理。如果是context switch，kernel会把当前用户线程的状态保存到对应的TCB里面并且kernel里scheduler会选出下一个执行的用户线程并且将这个线程的TCB信息载入CPU里然后将CPU资源交给下一个用户线程。
