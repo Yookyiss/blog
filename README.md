@@ -26,3 +26,5 @@
     
 + 网络原理
     
++ 前端问题
+    + [jquery ajax 每次求请求数都翻倍](https://github.com/Yookyiss/blog/blob/master/blog/fronted/jquery-ajax-request-doubled.md)
